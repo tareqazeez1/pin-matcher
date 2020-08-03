@@ -12,34 +12,34 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="pin-generator half-width">
-                    <input class="form-control" type="text">
-                    <button class="generate-btn">Generate Pin</button>
+                    <input id="screen-left" class="form-control" type="text">
+                    <button id="button-left" class="generate-btn">Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input class="form-control" type="text">
+                    <input id="screen-right" class="form-control" type="text">
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
-                              <div class="button">7</div>
-                              <div class="button">8</div>
-                              <div class="button">9</div>
+                              <div class="button" onclick="btnClick('7')">7</div>
+                              <div class="button" onclick="btnClick('8')">8</div>
+                              <div class="button" onclick="btnClick('9')">9</div>
                             </div>
                             <div class="calc-button-row">
-                              <div class="button">4</div>
-                              <div class="button">5</div>
-                              <div class="button">6</div>
+                              <div class="button" onclick="btnClick('4')">4</div>
+                              <div class="button" onclick="btnClick('5')">5</div>
+                              <div class="button" onclick="btnClick('6')">6</div>
                             </div>
                             <div class="calc-button-row">
-                              <div class="button">1</div>
-                              <div class="button">2</div>
-                              <div class="button">3</div>
+                              <div class="button" onclick="btnClick('1')">1</div>
+                              <div class="button" onclick="btnClick('2')">2</div>
+                              <div class="button" onclick="btnClick('3')">3</div>
                             </div>
                             <div class="calc-button-row">
-                                <div class="button"><</div>
-                                <div class="button">0</div>
-                                <div class="button">C</div>
+                                <div class="button" onclick="backSpace()"><</div>
+                                <div class="button" onclick="btnClick('0')">0</div>
+                                <div class="button" onclick="clearAll()">C</div>
                             </div>
                             <div>
                                 <button type="submit" class="submit-btn">Submit</button>
@@ -49,13 +49,50 @@
                 </div>
             </div>
         </div>
-        <div class="notify-section">
+        <div id="massages" class="notify-section">
             <p class="notify">❌ Pin Didn't Match, Please try again</p>
             <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
 
 
-    
+<!-- Javascript starts here ............ -->
+<script>
+document.getElementById('massages').style.display = "none";
+
+// This function will generate a random number.
+
+const generateBtn = document.getElementById('button-left');
+generateBtn.addEventListener("click", function() {
+    let screenLeft = document.getElementById('screen-left');
+    let generatePin = Math.floor(100000 + Math.random() * 900000);
+    generatePin = parseInt(generatePin.toString().substring(0, 4));
+    screenLeft.value = generatePin;
+})
+
+// Number Pad section starts
+document.getElementById('screen-right').value = "";
+function btnClick(num) {
+    let screenRight = document.getElementById('screen-right');
+    screenRight.value += num;
+}
+
+function backSpace(){
+    let screenRight = document.getElementById('screen-right').value;
+    let backSpace = screenRight.slice(0, -1);
+    document.getElementById('screen-right').value = backSpace;
+}
+
+function clearAll() {
+    let screenRight = document.getElementById('screen-right').value;
+    let clearAll = ' ';
+    document.getElementById('screen-right').value = clearAll;
+}
+// Number Pad section ends
+
+
+
+</script>
+
 </body>
 </html>
