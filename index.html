@@ -19,7 +19,7 @@
             <div class="col-md-6">
                 <div class="input-section half-width">
                     <input id="screen-right" class="form-control" type="text">
-                    <div class="numbers">
+                    <div id="number-pad" class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
                               <div class="button" onclick="btnClick('7')">7</div>
@@ -42,57 +42,22 @@
                                 <div class="button" onclick="clearAll()">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn">Submit</button>
+                                <button id="submit-button" type="submit" class="submit-btn">Submit</button>
                                 <p class="action-left">3 try left</p>
                             </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="massages" class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+        <div class="notify-section">
+            <p id="wrong-pin" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="right-pin" class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
 
 
-<!-- Javascript starts here ............ -->
-<script>
-document.getElementById('massages').style.display = "none";
 
-// This function will generate a random number.
-
-const generateBtn = document.getElementById('button-left');
-generateBtn.addEventListener("click", function() {
-    let screenLeft = document.getElementById('screen-left');
-    let generatePin = Math.floor(100000 + Math.random() * 900000);
-    generatePin = parseInt(generatePin.toString().substring(0, 4));
-    screenLeft.value = generatePin;
-})
-
-// Number Pad section starts
-document.getElementById('screen-right').value = "";
-function btnClick(num) {
-    let screenRight = document.getElementById('screen-right');
-    screenRight.value += num;
-}
-
-function backSpace(){
-    let screenRight = document.getElementById('screen-right').value;
-    let backSpace = screenRight.slice(0, -1);
-    document.getElementById('screen-right').value = backSpace;
-}
-
-function clearAll() {
-    let screenRight = document.getElementById('screen-right').value;
-    let clearAll = ' ';
-    document.getElementById('screen-right').value = clearAll;
-}
-// Number Pad section ends
-
-
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
